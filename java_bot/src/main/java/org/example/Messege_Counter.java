@@ -9,6 +9,18 @@ public class Messege_Counter extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
+        if(update.getMessage().getFrom().getId() == 1781054920L)
+            if(update.getMessage().getText().toLowerCase().equals("выключись")){
+                SendMessage sendMessage = new SendMessage();
+                sendMessage.setText("так точно");
+                sendMessage.setChatId(update.getMessage().getChatId());
+                try {
+                    execute(sendMessage);
+                } catch (TelegramApiException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
         switch (update.getMessage().getText().toLowerCase()) {
             case "пинг":
                 SendMessage sendMessage = new SendMessage();
